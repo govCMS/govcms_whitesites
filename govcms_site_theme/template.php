@@ -83,7 +83,6 @@ function _push_ezbake_settings_to_js(&$form) {
   }
 
   // Get the confirmation page URL
-  // @TODO add real confirmation page URL
   $confirmation_page_url = variable_get('ezbake_confirm_url');
   if (!$confirmation_page_url) {
     if (user_access('administer site configuration')) {
@@ -96,7 +95,6 @@ function _push_ezbake_settings_to_js(&$form) {
   }
 
   // Get the error page URL
-  // @TODO change the fallback for error URL
   $error_page_url = variable_get('ezbake_error_url');
   if (!$error_page_url) {
     if (user_access('administer site configuration')) {

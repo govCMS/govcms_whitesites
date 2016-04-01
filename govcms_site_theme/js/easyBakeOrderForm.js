@@ -155,7 +155,7 @@
                 validator.registerCallback('govEmail', function(value) {
                     // check for the ending of the email address
                     // only accept emails ending in gov.au
-                    return /gov\.au|acquia\.com$/.test(value);
+                    return /gov\.au$/.test(value);
                 }).setMessage('govEmail', "We're sorry, the govCMS service is only available to Australian government entities so we require you to have a valid .gov.au email address. If you are part of a government entity that doesn't use .gov.au email addresses, please get in touch and we can help you.");
             }
 
