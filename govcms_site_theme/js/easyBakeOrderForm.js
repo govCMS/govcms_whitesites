@@ -6,7 +6,7 @@
 
     // To understand behaviors, see https://drupal.org/node/756722#behaviors
     Drupal.behaviors.validateEasyBakeOrderForm = {
-        attach: function(context, settings) {
+        attach: function (context, settings) {
             var $easyBakeOrderForm,
                 bakerURL,
                 confirmPageURL,
@@ -42,7 +42,7 @@
                     // populate the messages
                     if (errors.length > 1) {
                         messageList.className = "messages__list";
-                        for (var i=0; i<errors.length; i++) {
+                        for (var i = 0; i < errors.length; i++) {
                             messageItem = document.createElement('li');
                             messageItem.className = "messages__item";
                             message = document.createElement('pre');
@@ -80,12 +80,12 @@
                         url: apiCallURL,
                         type: 'POST',
                         data: postData,
-                        success: function(data) {
+                        success: function (data) {
                             if (confirmPageURL) {
                                 window.location.replace(confirmPageURL);
                             }
                         },
-                        error: function(xhr, status) {
+                        error: function (xhr, status) {
                             var response = JSON.parse(xhr.response);
                             var errorMsg = "Error: ";
                             var errors;
@@ -112,32 +112,32 @@
             if ($easyBakeOrderForm && $easyBakeOrderForm.length > 0) {
                 // validate the form
                 var validator = new FormValidator('easybake-order-form', [
-                    {
-                        name: "contact_name",
-                        display: "name",
-                        rules: 'required'
-                    },
-                    {
-                        name: "contact_email",
-                        display: "email",
-                        rules: 'required|valid_email|callback_govEmail'
-                    },
-                    {
-                        name: "contact_phone",
-                        display: "phone number",
-                        rules: 'required'
-                    },
-                    {
-                        name: "site_name",
-                        display: "site name",
-                        rules: 'required'
-                    },
-                    {
-                        name: "agency_name",
-                        display: "agency name",
-                        rules: 'required'
-                    }],
-                    function(errors, event) {
+                        {
+                            name: "contact_name",
+                            display: "name",
+                            rules: 'required'
+                        },
+                        {
+                            name: "contact_email",
+                            display: "email",
+                            rules: 'required|valid_email|callback_govEmail'
+                        },
+                        {
+                            name: "contact_phone",
+                            display: "phone number",
+                            rules: 'required'
+                        },
+                        {
+                            name: "site_name",
+                            display: "site name",
+                            rules: 'required'
+                        },
+                        {
+                            name: "agency_name",
+                            display: "agency name",
+                            rules: 'required'
+                        }],
+                    function (errors, event) {
                         if (errors.length > 0) {
                             // Show the errors
                             displayValidationErrors(errors);
@@ -147,12 +147,14 @@
                             if (messageWrapper.length > 0) {
                                 messageWrapper[0].parentNode.removeChild(messageWrapper[0]);
                             }
-                            submitForm($(event.srcElement), event);
+                            // event.target does not like IE, check for event.srcElement.
+                            var target = event.target || event.srcElement;
+                            submitForm($(target), event);
                         }
                     }
                 );
 
-                validator.registerCallback('govEmail', function(value) {
+                validator.registerCallback('govEmail', function (value) {
                     // check for the ending of the email address
                     // only accept emails ending in gov.au
                     return /gov\.au$/.test(value);

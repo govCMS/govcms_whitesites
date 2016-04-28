@@ -21,12 +21,12 @@ function govcms_site_theme_form_alter(&$form, &$form_state, $form_id) {
     // @see https://govcms.atlassian.net/wiki/display/EZB/Baker+API for response types
     $query_params = drupal_get_query_parameters();
     if (!empty($query_params['error'])) {
-      $error_msg = "Error: " . $query_params['error'];
+      $error_msg = t("Error: @error", array('@error' => $query_params['error']));
 
       // read details (input as dot notation, e.g, details.message
       // but . is replaced by _ in PHP)
       if (!empty($query_params['details_message'])) {
-        $error_msg .= "<br>Details: " . $query_params['details_message'];
+        $error_msg .= "<br>" . t("Details: @details_message", array('@details_message' => $query_params['details_message']));
       }
 
       // fill in the form fields
