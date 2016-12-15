@@ -210,3 +210,29 @@ input, button {
     border: solid 1px $primaryColour !important;
   }
 }
+
+div#migration_fps .panel-col-top {
+  float: left;
+  width: 70%;
+}
+
+div#migration_fps .panel-col-middle {
+  float: right;
+  width:25%;
+}
+
+div#migration_fps .pane-blogs  {
+  width: 100%;
+}
+
+@media (max-width: 980px){
+  div#migration_fps .panel-col-top {
+    float: left;
+    width: 100%;
+  }
+
+  div#migration_fps .panel-col-middle {
+    float: left;
+    width:100%;
+  }
+}
